@@ -1,7 +1,5 @@
 package com.rzdev.juicyscore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,8 +23,8 @@ public class NewScore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_score);
 
-        mInputDate = (EditText) findViewById(R.id.input_new_score_date);
-        mInputTime = (EditText) findViewById(R.id.input_new_score_time);
+        mInputDate = findViewById(R.id.input_new_score_date);
+        mInputTime = findViewById(R.id.input_new_score_time);
 
         updateInputDate();
         updateInputTime();
@@ -35,12 +35,13 @@ public class NewScore extends AppCompatActivity {
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
-         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, monthOfYear);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateInputDate();
-        };
+        }
+
     };
 
     TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
