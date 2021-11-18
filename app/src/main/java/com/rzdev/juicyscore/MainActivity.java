@@ -33,9 +33,22 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
+        
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
+
+        RatingDbHelper dbHelper = new RatingDbHelper(this);
+        mDb = dbHelper.getWritableDatabase();
+        Cursor cursor = getAllRating();
+        Log.e("ItemCount", String.valueOf(cursor.getCount()));
+
+        mRatingListAdapter = new RatingListAdapter(this, cursor);
+        mRecyclerView.setAdapter(mRatingListAdapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         RatingDbHelper dbHelper = new RatingDbHelper(this);
         mDb = dbHelper.getWritableDatabase();

@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rzdev.juicyscore.data.Rating;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.RatingViewHolder> {
     private Cursor mCursor;
     private Context mContext;
@@ -40,9 +43,28 @@ public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.Ra
         @SuppressLint("Range") String restaurantName = mCursor.getString(mCursor.getColumnIndex(
                 Rating.RatingEntry.COLUMN_RESTAURANT_NAME));
 
-        @SuppressLint("Range") long id = mCursor.getLong(mCursor.getColumnIndex(Rating.RatingEntry._ID));
+        @SuppressLint("Range") float decorationRate =  mCursor.getFloat(mCursor.getColumnIndex(
+                Rating.RatingEntry.COLUMN_DECORATION_RATE));
 
+        @SuppressLint("Range") float foodRate =  mCursor.getFloat(mCursor.getColumnIndex(
+                Rating.RatingEntry.COLUMN_FOOD_RATE));
+
+        @SuppressLint("Range") float serviceRate =  mCursor.getFloat(mCursor.getColumnIndex(
+                Rating.RatingEntry.COLUMN_SERVICE_RATE));
+
+        @SuppressLint("Range") long id = mCursor.getLong(mCursor.getColumnIndex(
+                Rating.RatingEntry._ID));
+
+        @SuppressLint("Range") float datetime = mCursor.getFloat(mCursor.getColumnIndex(
+                Rating.RatingEntry.COLUMN_DATETIME));
+
+        String dateFormat = "dd/MM/yyyy à kk:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.FRANCE);
+
+        float score = (serviceRate + foodRate + decorationRate) / 3;
         holder.restaurantNameTextView.setText(restaurantName);
+        holder.datetimeTextView.setText(simpleDateFormat.format(datetime));
+        holder.scoreTextView.setText(String.valueOf(score));
 
         holder.itemView.setTag(id);
     }

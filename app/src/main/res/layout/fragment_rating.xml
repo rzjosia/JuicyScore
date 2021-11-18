@@ -41,6 +41,8 @@
             android:layout_height="match_parent"
             android:text="@string/score"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:gravity="center_vertical"
+            android:textSize="24sp"
+            tools:ignore="RtlCompat" />
     </LinearLayout>
 </LinearLayout>
