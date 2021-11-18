@@ -7,4 +7,9 @@
     <string name="food_rating_label">Nourriture</string>
     <string name="save">Enregistrer</string>
     <string name="share">Partager</string>
+    <string name="description">Description</string>
+    <string name="service">Service</string>
+    <string name="decoration">Decoration</string>
+    <string name="date">Date</string>
+    <string name="hours">Heure</string>
 </resources>
